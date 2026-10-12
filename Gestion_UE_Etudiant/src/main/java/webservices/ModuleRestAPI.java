@@ -27,4 +27,12 @@ public class ModuleRestAPI {
             return Response.status(400).entity("error").build();
         }
     }
+    @Path("/{inputCode}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @GET
+    public Response getUeByCode(@PathParam("inputCode") String mat) {
+        // return Response.status(200).entity(helper.getUEByCode(code)).build();
+        return Response.ok(helper.getModuleByMatricule(mat)).build();//alternative
+
+    }
 }
