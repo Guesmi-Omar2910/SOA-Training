@@ -1,7 +1,8 @@
 package webservices;
-import entities.UniteEnseignement;
+
+import entities.Module;
 import metiers.ModuleBusiness;
-import metiers.UniteEnseignementBusiness;
+
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -19,7 +20,7 @@ public class ModuleRestAPI {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createUe(ModuleBusiness module) {
+    public Response createUe(Module module) {
         if (helper.addModule(module)) {
             return Response.status(201).entity("ok").build();
 
@@ -34,5 +35,21 @@ public class ModuleRestAPI {
         // return Response.status(200).entity(helper.getUEByCode(code)).build();
         return Response.ok(helper.getModuleByMatricule(mat)).build();//alternative
 
+    }
+    @Path("/")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getModulebyMat(@QueryParam("Mat") String Mat) {
+        return Response.ok(helper.getModuleByMatricule(Mat)).build();
+    }
+    @Path("/delte/{deletemat}")
+    @DELETE
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response delteByMat(@PathParam("deletemat") String deltemat) {
+        if (helper.deleteModule(deltemat)) {
+            return Response.status(201).entity("supprimer avec succee").build();
+        } else {
+            return Response.status(400).entity("erreur lor de supression").build();
+        }
     }
 }
