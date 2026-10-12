@@ -39,8 +39,8 @@ public class ModuleRestAPI {
     @Path("/")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getModulebyMat(@QueryParam("Mat") String Mat) {
-        return Response.ok(helper.getModuleByMatricule(Mat)).build();
+    public Response getModulebyMat(@QueryParam("type") Module.TypeModule type) {
+        return Response.ok(helper.getModulesByType(type)).build();
     }
     @Path("/delte/{deletemat}")
     @DELETE
