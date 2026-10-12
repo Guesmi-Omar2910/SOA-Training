@@ -18,7 +18,7 @@ private UniteEnseignementBusiness uniteEnseignementBusiness=new UniteEnseignemen
     }
 
     // Ajouter un module
-    public boolean addModule(Module module) {
+    public boolean addModule(ModuleBusiness module) {
 
         int code=module.getUniteEnseignement().getCode();
        UniteEnseignement ue=uniteEnseignementBusiness.getUEByCode(code);
